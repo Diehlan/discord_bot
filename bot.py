@@ -105,16 +105,6 @@ async def dice(ctx):
     await ctx.send(f"{roll} , {roll2}")
 
         
-#commands list
-@steve.command()
-async def list_commands(ctx):
-    help_list = ["?rock // Play rock, paper, scissors with me and choose rock",
-        "?paper // Play rock, paper, scissors with me and choose paper",
-        "?scissors // Play rock, paper, scissors with me and choose scissors",
-        "?ping // This lets you know what my ping is",
-        "?bully // This bullies someone from the server at random",
-        "?dice // This rolls a pair of 6 sided dice"]
-    await ctx.send("\n".join(help_list))
  
 #join
 @steve.command() 
@@ -170,6 +160,20 @@ async def leave(ctx):
 async def purple(ctx):
     await ctx.send(f"She's a one eyed, one horned, flying purple people eater")
     
+#commands list
+@steve.command()
+async def list_commands(ctx):
+    help_list = ["?rock // Play rock, paper, scissors with me and choose rock",
+        "?paper // Play rock, paper, scissors with me and choose paper",
+        "?scissors // Play rock, paper, scissors with me and choose scissors",
+        "?ping // This lets you know what my ping is",
+        "?bully // This bullies someone from the server at random",
+        "?dice // This rolls a pair of 6 sided dice",
+        "?join // This pulls me into whatever voice channel the user is connected to",
+        "?leave // This disconnects from the voice channel",
+        "?purple // Fuck around and find out"]
+    await ctx.send("\n".join(help_list))
+    
 def startup_check():
     if os.path.exists("credentials.json"):
         f = open('credentials.json')
@@ -178,7 +182,8 @@ def startup_check():
         return data["discord_token"]
     else:
         print("Credentials do not exist.")
-        quit()
+        return input("What are your credentials? ")
+
 TOKEN = startup_check()
 print("Starting bot")
 steve.run(TOKEN)
