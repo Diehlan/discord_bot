@@ -2,6 +2,7 @@ import random
 import discord
 #import youtube_dl
 import json
+import os.path
 
 from discord.ext import commands
 import os
@@ -10,21 +11,13 @@ intents = discord.Intents().default()
 intents.members = True
 
 steve = commands.Bot(command_prefix = "?", intents=intents)
-f = open('credentials.json')
 
-data = json.load(f)
-
-TOKEN = data["discord_token"]
 
 
 @steve.event
 async def on_ready():
     print("Steve online and ready.")
-
-#status
-@steve.event
-async def on_ready():
-    await steve.change_presence(activity = discord.Game(name = "?ping Diehlan if I die"))
+    await steve.change_presence(activity = discord.Game(name = "Message Diehlan if I die"))
 
 #role on join
 @steve.event
@@ -114,13 +107,14 @@ async def dice(ctx):
         
 #commands list
 @steve.command()
-async def commands(ctx):
-    await ctx.send(f"?rock // Play rock, paper, scissors with me and choose rock")
-    await ctx.send(f"?paper // Play rock, paper, scissors with me and choose paper")
-    await ctx.send(f"?scissors // Play rock, paper, scissors with me and choose scissors")
-    await ctx.send(f"?ping // This lets you know what my ping is")
-    await ctx.send(f"?bully // This bullies someone from the server at random")
-    await ctx.send(f"?dice // This rolls a pair of 6 sided dice")
+async def list_commands(ctx):
+    help_list = ["?rock // Play rock, paper, scissors with me and choose rock",
+        "?paper // Play rock, paper, scissors with me and choose paper",
+        "?scissors // Play rock, paper, scissors with me and choose scissors",
+        "?ping // This lets you know what my ping is",
+        "?bully // This bullies someone from the server at random",
+        "?dice // This rolls a pair of 6 sided dice"]
+    await ctx.send("\n".join(help_list))
  
 #join
 @steve.command() 
@@ -176,6 +170,15 @@ async def leave(ctx):
 async def purple(ctx):
     await ctx.send(f"She's a one eyed, one horned, flying purple people eater")
     
-    
-    
+def startup_check():
+    if os.path.exists("credentials.json"):
+        f = open('credentials.json')
+        data = json.load(f)
+        print("Successfully found credentials.")
+        return data["discord_token"]
+    else:
+        print("Credentials do not exist.")
+        quit()
+TOKEN = startup_check()
+print("Starting bot")
 steve.run(TOKEN)
