@@ -1,6 +1,7 @@
 import random
 import discord
-import youtube_dl
+#import youtube_dl
+import json
 
 from discord.ext import commands
 import os
@@ -9,7 +10,12 @@ intents = discord.Intents().default()
 intents.members = True
 
 steve = commands.Bot(command_prefix = "?", intents=intents)
-TOKEN = os.environ.get("ODkwODI4MzQ0NTAzOTc1OTQ2.YU1ejA.s7efH9ckrD8f0Z_CdcjhtER95UY")
+f = open('credentials.json')
+
+data = json.load(f)
+
+TOKEN = data["discord_token"]
+
 
 @steve.event
 async def on_ready():
@@ -167,4 +173,4 @@ async def leave(ctx):
     await ctx.voice_client.disconnect()
     
     
-steve.run("ODkwODI4MzQ0NTAzOTc1OTQ2.YU1ejA.s7efH9ckrD8f0Z_CdcjhtER95UY")
+steve.run(TOKEN)
