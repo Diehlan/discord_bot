@@ -171,6 +171,11 @@ async def join(ctx):
 @steve.command()
 async def leave(ctx):
     await ctx.voice_client.disconnect()
+
+@steve.command()
+async def purple(ctx):
+    await ctx.send(f"She's a one eyed, one horned, flying purple people eater")
+    
     
     
 steve.run(TOKEN)
