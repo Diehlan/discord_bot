@@ -6,6 +6,7 @@ import os.path
 
 from discord.ext import commands
 import os
+from asyncio import sleep
 
 intents = discord.Intents().default()
 intents.members = True
@@ -17,7 +18,13 @@ steve = commands.Bot(command_prefix = "?", intents=intents)
 @steve.event
 async def on_ready():
     print("Steve online and ready.")
-    await steve.change_presence(activity = discord.Game(name = "Message Diehlan if I die"))
+    while True:
+        await steve.change_presence(activity = discord.Game(name = "Message Diehlan if I die"))
+        await sleep(5)
+        await steve.change_presence(activity = discord.Activity(type=discord.ActivityType.watching, name="?list_commands for help"))
+        await sleep(5)
+        if False:
+            break
 
 #role on join
 @steve.event
