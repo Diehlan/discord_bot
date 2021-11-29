@@ -2,4 +2,4 @@ credentials.json
 .vscode
 .mypy_cache
 procFile
-requirements.txt.txt
+requirements.txt
