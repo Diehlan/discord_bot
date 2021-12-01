@@ -3,9 +3,9 @@ import discord
 #import youtube_dl
 import json
 import os.path
+import os
 
 from discord.ext import commands
-import os
 from asyncio import sleep
 
 intents = discord.Intents().default()
@@ -49,6 +49,17 @@ async def bully(ctx):
         "<@214481816684462080>", "<@196104209332961280>", "<@179726534477742090>", "<@417202993499209749>",\
             "<@205464885797060608>", "<@202145262683029514>", "<@276216143998615552>", "<@122183498541826050>"]
     await ctx.send(random.choice(threat) + random.choice(subjects))
+ 
+# @steve.command()
+# async def bully(ctx):
+#     threat = "fuck you"
+#     target = []
+#     guild = steve.get_guild(423678025377382410) #server id
+#     role = guild.get_role(915723894680354856) #role id
+#     for guild in steve.guild:
+#         for role in guild.role:
+#             for member in role.member:
+#                 target.append()
     
 #pick rock
 @steve.command()
