@@ -167,7 +167,10 @@ async def join(ctx):
 #     for file in os.listdir("./"):
 #         if file.endswith(".mp3"):
 #             os.rename(file, "song.mp3")                        
-#     voice.play(discord.FFmpegPCMAudio("song.mp3"))                     
+#     voice.play(discord.FFmpegPCMAudio("song.mp3"))
+#     voice.volume = 100
+#     voice.is_playing()   
+                  
    
 #leave
 @steve.command()
