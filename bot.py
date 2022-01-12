@@ -23,8 +23,7 @@ async def on_ready():
         await sleep(5)
         await steve.change_presence(activity = discord.Activity(type=discord.ActivityType.watching, name="?list_commands for help"))
         await sleep(5)
-        if False:
-            break
+        
 
 #role on join
 @steve.event
